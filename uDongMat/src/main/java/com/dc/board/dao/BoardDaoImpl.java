@@ -1,6 +1,7 @@
 package com.dc.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ public class BoardDaoImpl implements BoardDao{
 	String namespace = "com.dc.board.";
 	
 	@Override
-	public List<BoardVo> boardSelectList() {
+	public List<BoardVo> boardSelectList(String keyword) {
 		// TODO Auto-generated method stub
 		
-		return sqlSession.selectList(namespace +"boardSelectList");
+		return sqlSession.selectList(namespace +"boardSelectList", keyword);
 	}
 
 	@Override
@@ -34,4 +35,30 @@ public class BoardDaoImpl implements BoardDao{
 		// TODO Auto-generated method stub
 		sqlSession.insert(namespace +"boardInsertOne", boardVo);
 	}
+
+	@Override
+	public int boardUpdateOne(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace +"boardUpdateOne", boardVo );
+	}
+
+	@Override
+	public void boardDelete(int boardNo) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace +"boardDelete", boardNo);
+	}
+
+//	@Override
+//	public int boardTotalCount() {
+//		// TODO Auto-generated method stub
+//		return sqlSession.selectOne(namespace +"boardTotalCount");
+//	}
+
+	@Override
+	public int boardSelectTotalCount(String keyword) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 }

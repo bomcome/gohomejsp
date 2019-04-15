@@ -3,13 +3,13 @@
 
 <style type="text/css">
 	#tail #info{
-		margin-left: 400px;
+		margin-left: 500px;
 		margin-top: 30px;
-		font-size: 15px;
+		font-size: 13px;
 	}
 	#tail #eng{
-		margin-left: 620px;
-		font-size: 15px;
+		margin-left: 690px;
+		font-size: 12px;
 	}
 	#tail span{
 		font-weight: bold;
@@ -21,7 +21,7 @@
 		margin-top: 40px;
 	}
 	#tail {
-		width: 1900px;
+		width: 1920px;
 	} 
 </style>
 <div id="tail">

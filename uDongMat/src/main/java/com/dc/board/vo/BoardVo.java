@@ -16,18 +16,6 @@ public class BoardVo {
 		super();
 	}
 
-
-
-	public BoardVo(int boardNo, String nickname, String title, Date createDate) {
-		super();
-		this.boardNo = boardNo;
-		this.nickname = nickname;
-		this.title = title;
-		this.createDate = createDate;
-	}
-
-
-
 	public BoardVo(int boardNo, int memberNo, String nickname, String title, String contents, Date createDate,
 			Date modifiedDate) {
 		super();

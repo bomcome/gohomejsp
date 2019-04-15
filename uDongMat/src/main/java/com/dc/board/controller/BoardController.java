@@ -21,8 +21,8 @@ public class BoardController {
 	@RequestMapping(value="/board/list.do", method= {RequestMethod.GET})
 	public String boardList(
 			@RequestParam(defaultValue ="1") int curPage,
-			@RequestParam(defaultValue ="") String keyword
-			,Model model) {
+			@RequestParam(defaultValue ="") String keyword,
+			Model model) {
 		
 		List<BoardVo> boardList = 
 				boardService.boardSelectList(keyword);

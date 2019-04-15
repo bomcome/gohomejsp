@@ -19,9 +19,6 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardDao boardDao;
 
-	@Resource(name = "fileUtils")
-	private FileUtils fileUtils;
-	
 	@Override
 	public List<BoardVo> boardSelectList(String keyword) {
 		// TODO Auto-generated method stub

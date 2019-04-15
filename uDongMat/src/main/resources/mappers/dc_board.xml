@@ -26,13 +26,13 @@
 	<select id="memberSelectList" parameterType="String"
 		resultMap="boardResultMap">
 		SELECT BOARD_NO, TITLE, NICKNAME, CRE_DATE
-		FROM (SELECT B.BOARD_NO, B.CONTENTS,  B.TITLE AS TITLE, M.NICKNAME AS NICKNAME, B.CRE_DATE AS CRE_DATE
+		FROM (SELECT B.BOARD_NO AS BOARD_NO, B.CONTENTS AS CONTENTS,  B.TITLE AS TITLE, M.NICKNAME AS NICKNAME, B.CRE_DATE AS CRE_DATE
 		        FROM BOARD B, MEMBERS M
 		        WHERE B.MEMBER_NO = M.MEMBER_NO
 		        ORDER BY B.BOARD_NO)
-		WHERE title LIKE '%'||#{keyword}||'%'
-		or contents LIKE '%'||#{keyword}||'%'
-		or nickname LIKE '%'||#{keyword}||'%'
+		WHERE TITLE LIKE '%'||#{keyword}||'%'
+		OR CONTENTS LIKE '%'||#{keyword}||'%'
+		OR NICKNAME LIKE '%'||#{keyword}||'%'
 	</select>
 	
 	

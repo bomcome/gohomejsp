@@ -21,20 +21,23 @@
 		font-size: 21px;
 		font-weight: bold;
 	}
-	
+	#header a {
+		text-decoration: none;
+	}
 
 	
 	#header {
 		width: 1920px;
+		margin-bottom: 30px;
 	} 
-	#shopAdd{
+	#header #shopAdd{
 		margin-left: 370px;
 	}
-	#title{
+	#header #title{
 		margin-left: 370px;
 	}
 	
-	#right{
+	#header #right{
 		margin-left: 370px;
 	}
 	
@@ -47,11 +50,11 @@
 	<button id="shopAdd" onclick="/restaurants/add.do">맛집등록</button>
 	
 	<span id="title">
-		<span id="u">우</span>리<span id="dong">동</span>네<span id="mat">맛</span>집
+		<a href=""><span id="u">우</span>리<span id="dong">동</span>네<span id="mat">맛</span>집</a>
 	</span>
 	
 	<span id="right">
-		<button id="member" onclick="">${memberVo.nickname}나는fsaaaaaaaa</button>
+		<button id="member" onclick="">${memberVo.nickname}</button>
 		<c:if test="${memberVo == null}">
 			<button id="login" onclick="location.href='/auth/login.do'">로그인</button>
 		</c:if>

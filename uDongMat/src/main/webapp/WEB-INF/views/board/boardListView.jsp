@@ -65,45 +65,65 @@
 	#boardListContainer {
 		width: 1920px;
 	}
+	
+	#formTag span{
+		text-align: right;
+	}
 </style>
 <title>Insert title here</title>
+
 </head>
 <body>
-<jsp:include page="../Header.jsp"/>
-<div id=boardListContainer>
-<table id="board">
-	<tr>
-		<td id="boardInput" colspan="4">
-			<span id="freeBoard">우동맛게시판&nbsp;&nbsp;&nbsp;</span>
-				<form action="./list.do" method="get" id="formTag">	
-					<input type="text" name="keyword" value="${keyword}">
-					<input type="submit" value="검색">
-				</form>
-		</td>
-	</tr>
-	<tr id="top">
-		<td id="no">번호</td>
-		<td class="title">제목</td>
-		<td id="writer">작성자</td>
-		<td id="createDate">작성일</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td class="title">웃긴일ㅋㅋㅋㅋㅋㅋㅋㅋㅋ</td>
-		<td>짱구dddddddddd</td>
-		<td>2019/04/11</td>
-	</tr>
-	<c:forEach var="boardVo" items="${boardList}">
-		<tr>
-			<td>${boardVo.boardNo}</td>
-			<td class="title">${boardVo.title}</td>
-			<td>${boardVo.nickname}</td>
-			<td>${boardVo.createDate}</td>
-		</tr>
-	</c:forEach>
-</table>
-</div>
 
-<jsp:include page="../Tail.jsp"/>
+	<jsp:include page="../Header.jsp"/>
+	<div id=boardListContainer>
+	<table id="board">
+		<tr>
+			<td id="boardInput" colspan="4">
+				<span id="freeBoard">우동맛게시판(${totalCount})</span>
+					<form action="./list.do" method="get" id="formTag">	
+						<span>
+							<input type="text" name="keyword" value="${keyword}">
+							<input type="submit" value="검색">
+						</span>
+					</form>
+			</td>
+		</tr>
+		<tr id="top">
+			<td id="no">번호</td>
+			<td class="title">제목</td>
+			<td id="writer">작성자</td>
+			<td id="createDate">작성일</td>
+		</tr>
+		
+		<c:forEach var="boardVo" items="${boardList}">
+			<tr>
+				<td>${boardVo.boardNo}</td>
+				<td class="title">
+					<a href='./one.do?boardNo=${boardVo.boardNo}'>${boardVo.title}</a>
+				</td>
+				<td>${boardVo.nickname}</td>
+				<td>${boardVo.createDate}</td>
+			</tr>
+		</c:forEach>
+	</table>
+	
+	<jsp:include page="/WEB-INF/views/common/paging.jsp">
+		<jsp:param value="${pagingMap}" name="pagingMap"/>
+	</jsp:include>
+
+	<form action="./list.do" id="pagingForm" method="post">
+		<input type="hidden" id="curPage" name="curPage" 
+			value="${pagingMap.memberPaging.curPage}">
+	</form>
+	
+	
+	
+	<button onclick="href.location=''">이전화면</button>
+	<button onclick="location.href='add.do'">글쓰기</button>
+	
+	</div>
+	
+	<jsp:include page="../Tail.jsp"/>
 </body>
 </html>

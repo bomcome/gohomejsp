@@ -1,6 +1,8 @@
 package com.dc.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dc.board.service.BoardService;
 import com.dc.board.vo.BoardVo;
+import com.dc.util.Paging;
 
 @Controller
 public class BoardController {
@@ -18,18 +21,55 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping(value="/board/list.do", method= {RequestMethod.GET})
+	@RequestMapping(value="/board/list.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String boardList(
 			@RequestParam(defaultValue ="1") int curPage,
-			@RequestParam(defaultValue ="") String keyword
-			,Model model) {
+			@RequestParam(defaultValue ="") String keyword,
+			Model model) {
 		
-		List<BoardVo> boardList = 
-				boardService.boardSelectList(keyword);
 		int totalCount = boardService.boardSelectTotalCount(keyword);
 		
+		Paging boardPaging = new Paging(totalCount, curPage);
+		int start = boardPaging.getPageBegin();
+		int end = boardPaging.getPageEnd();
+		
+		List<BoardVo> boardList = 
+				boardService.boardSelectList(keyword, start, end);
+		
+		
+		Map<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("boardPaging", boardPaging);
+		
 		model.addAttribute("boardList", boardList);
-		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalCount", totalCount);		
+		model.addAttribute("pagingMap", pagingMap);
+		model.addAttribute("keyword", keyword);
+		
+		
+//		int totalCount = 
+//				memberService.memberSelectTotalCount(searchOption, keyword);
+//		
+//		Paging memberPaging = new Paging(totalCount, curPage);
+//		int start = memberPaging.getPageBegin();
+//		int end = memberPaging.getPageEnd();
+//
+//		List<MemberVo> memberList = 
+//				memberService.memberSelectList(
+//						searchOption, keyword, start, end);
+//		
+//		Map<String, Object> pagingMap = new HashMap<>();
+//		pagingMap.put("totalCount", totalCount);
+//		pagingMap.put("memberPaging", memberPaging);
+//
+//		model.addAttribute("memberList", memberList);
+//		model.addAttribute("pagingMap", pagingMap);
+//		model.addAttribute("keyword", keyword);
+		
+		
+		
+		
+		
 		return "board/boardListView";
 	}
 	

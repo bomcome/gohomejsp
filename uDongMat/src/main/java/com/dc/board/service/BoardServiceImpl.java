@@ -19,13 +19,10 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardDao boardDao;
 
-	@Resource(name = "fileUtils")
-	private FileUtils fileUtils;
-	
 	@Override
-	public List<BoardVo> boardSelectList(String keyword) {
+	public List<BoardVo> boardSelectList(String keyword, int start, int end) {
 		// TODO Auto-generated method stub
-		return boardDao.boardSelectList(keyword);
+		return boardDao.boardSelectList(keyword, start, end);
 	}
 
 	@Override
@@ -61,6 +58,6 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int boardSelectTotalCount(String keyword) {
 		// TODO Auto-generated method stub
-		return 0;
+		return boardDao.boardSelectTotalCount(keyword);
 	}
 }

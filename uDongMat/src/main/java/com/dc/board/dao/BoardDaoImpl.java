@@ -1,5 +1,6 @@
 package com.dc.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,10 +19,15 @@ public class BoardDaoImpl implements BoardDao{
 	String namespace = "com.dc.board.";
 	
 	@Override
-	public List<BoardVo> boardSelectList(String keyword) {
+	public List<BoardVo> boardSelectList(String keyword, int start, int end) {
 		// TODO Auto-generated method stub
 		
-		return sqlSession.selectList(namespace +"boardSelectList", keyword);
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("start", start);
+		map.put("end", end);
+		
+		return sqlSession.selectList(namespace +"boardSelectList", map);
 	}
 
 	@Override
@@ -57,7 +63,7 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public int boardSelectTotalCount(String keyword) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace +"boardSelectTotalCount", keyword);
 	}
 
 	

@@ -17,23 +17,39 @@
 
 	
 	
+<!-- 	<select id="boardSelectList" parameterType="map" -->
+<!-- 		resultMap="boardResultMap"> -->
+<!-- 		SELECT BOARD_NO, TITLE, NICKNAME, CRE_DATE -->
+<!-- 		FROM (SELECT B.BOARD_NO AS BOARD_NO, B.CONTENTS AS CONTENTS,  B.TITLE AS TITLE, M.NICKNAME AS NICKNAME, B.CRE_DATE AS CRE_DATE -->
+<!-- 		        FROM BOARD B, MEMBERS M -->
+<!-- 		        WHERE B.MEMBER_NO = M.MEMBER_NO -->
+<!-- 		        ORDER BY B.BOARD_NO) -->
+<!-- 		WHERE TITLE LIKE '%'||#{keyword}||'%' -->
+<!-- 		OR CONTENTS LIKE '%'||#{keyword}||'%' -->
+<!-- 		OR NICKNAME LIKE '%'||#{keyword}||'%' -->
+<!-- 	</select> -->
 	
 	
 	
 	
-	
-	
-	<select id="memberSelectList" parameterType="String"
+	<select id="boardSelectList" parameterType="map"
 		resultMap="boardResultMap">
 		SELECT BOARD_NO, TITLE, NICKNAME, CRE_DATE
-		FROM (SELECT B.BOARD_NO, B.CONTENTS,  B.TITLE AS TITLE, M.NICKNAME AS NICKNAME, B.CRE_DATE AS CRE_DATE
-		        FROM BOARD B, MEMBERS M
-		        WHERE B.MEMBER_NO = M.MEMBER_NO
-		        ORDER BY B.BOARD_NO)
-		WHERE title LIKE '%'||#{keyword}||'%'
-		or contents LIKE '%'||#{keyword}||'%'
-		or nickname LIKE '%'||#{keyword}||'%'
+		FROM(
+		    SELECT ROWNUM AS RNUM, BOARD_NO, TITLE, NICKNAME, CRE_DATE
+				FROM (SELECT B.BOARD_NO AS BOARD_NO, B.CONTENTS AS CONTENTS, B.TITLE AS TITLE, M.NICKNAME AS NICKNAME, B.CRE_DATE AS CRE_DATE
+				        FROM BOARD B, MEMBERS M
+				        WHERE B.MEMBER_NO = M.MEMBER_NO
+				        ORDER BY B.BOARD_NO DESC)
+				WHERE TITLE LIKE '%'||#{keyword}||'%'
+				OR CONTENTS LIKE '%'||#{keyword}||'%'
+				OR NICKNAME LIKE '%'||#{keyword}||'%'
+		    )
+		WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
+	
+	
+	
 	
 	
 	
@@ -44,8 +60,6 @@
 <!-- 		WHERE B.MEMBER_NO = M.MEMBER_NO -->
 <!-- 		ORDER BY B.BOARD_NO -->
 <!-- 	</select> -->
-	
-	
 	
 	<select id="boardSelectOne" parameterType="int"
 		resultMap="boardResultMap">
@@ -80,20 +94,17 @@
 	</update>
 
 
-
-
-
  	<delete id="boardDelete" parameterType="int"> 
 		DELETE FROM BOARD
 		WHERE BOARD_NO = #{boardNo}
 	</delete>
 	
 	
-	<select id="boardTotalCount"
-		resultType="int">
-		SELECT COUNT(*)
-		FROM BOARD
-	</select>
+<!-- 	<select id="boardTotalCount" -->
+<!-- 		resultType="int"> -->
+<!-- 		SELECT COUNT(*) -->
+<!-- 		FROM BOARD -->
+<!-- 	</select> -->
 	
 	
 	<select id="boardSelectTotalCount" parameterType="String"
@@ -105,7 +116,7 @@
 	        ORDER BY B.BOARD_NO)
 			WHERE title LIKE '%'||#{keyword}||'%'
 			or contents LIKE '%'||#{keyword}||'%'
-			or nickname LIKE '%'||#{keyword}||'%';
+			or nickname LIKE '%'||#{keyword}||'%'
 	</select>
 	
 	

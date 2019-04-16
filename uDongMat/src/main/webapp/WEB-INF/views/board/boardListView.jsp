@@ -69,7 +69,27 @@
 	#formTag span{
 		text-align: right;
 	}
+	
+	#boardListContainer #before{
+		margin-left: 750px;
+	}
+	
+	#boardListContainer #write{
+		margin-left: 200px;
+	}
+	
+	#boardListContainer > button{
+		width: 100px;
+		height: 40px;
+		font-weight: bold;
+	}
+	
+	
 </style>
+
+<script type="text/javascript" 
+	src="/springHome/resources/js/jquery-3.3.1.js"></script> 
+
 <title>Insert title here</title>
 
 </head>
@@ -108,19 +128,20 @@
 		</c:forEach>
 	</table>
 	
+	
 	<jsp:include page="/WEB-INF/views/common/paging.jsp">
 		<jsp:param value="${pagingMap}" name="pagingMap"/>
 	</jsp:include>
 
 	<form action="./list.do" id="pagingForm" method="post">
 		<input type="hidden" id="curPage" name="curPage" 
-			value="${pagingMap.memberPaging.curPage}">
+			value="${pagingMap.boardPaging.curPage}">
 	</form>
 	
+	<button id="before" onclick="href.location=''">이전화면</button>
+	<button id="write" onclick="location.href='add.do'">글쓰기</button>
 	
 	
-	<button onclick="href.location=''">이전화면</button>
-	<button onclick="location.href='add.do'">글쓰기</button>
 	
 	</div>
 	

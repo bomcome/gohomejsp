@@ -7,7 +7,7 @@ import com.dc.board.vo.BoardVo;
 
 public interface BoardService {
 	
-	public List<BoardVo> boardSelectList(String keyword);
+	public List<BoardVo> boardSelectList(String keyword, int start, int end);
 	public BoardVo boardSelectOne(int boardNo);
 	public void boardInsertOne(BoardVo boardVo);
 	public int boardUpdateOne(BoardVo boardVo);

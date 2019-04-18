@@ -64,6 +64,7 @@
 	}
 	#boardListContainer {
 		width: 1920px;
+		clear: both;
 	}
 	
 	#formTag span{
@@ -84,6 +85,9 @@
 		font-weight: bold;
 	}
 	
+	.header {
+		float: left;
+	}
 	
 </style>
 
@@ -95,7 +99,8 @@
 </head>
 <body>
 
-	<jsp:include page="../Header.jsp"/>
+	<jsp:include page="../header.jsp"/>
+	<jsp:include page="../header2.jsp"/>
 	<div id=boardListContainer>
 	<table id="board">
 		<tr>
@@ -136,6 +141,8 @@
 	<form action="./list.do" id="pagingForm" method="post">
 		<input type="hidden" id="curPage" name="curPage" 
 			value="${pagingMap.boardPaging.curPage}">
+		<input type="hidden" id="keyword" name="keyword" 
+			value="${keyword}">
 	</form>
 	
 	<button id="before" onclick="href.location=''">이전화면</button>

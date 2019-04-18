@@ -9,7 +9,7 @@ nav > ul {
 	list-style-type: none;
 	padding: 0px;
 	overflow: hidden;
- 	background-color: #333333; 
+/*  	background-color: #333333;  */
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
@@ -17,25 +17,26 @@ nav > ul {
 
 nav > ul > li{
 	float: left;
+	font-size: 15px;
 }
 
 nav > ul > li > a{
-/* 	display: block; */
- 	color: white; 
+/*  	display: block;  */
+ 	color: black; 
 	text-align: center;
-	padding: 16px;
+	padding: 10px;
 	text-decoration: none;
 }
 
 nav > ul > li > a:hover{
-	color: #FFD9EC;
-	background-color: #5D5D5D;
+	color: black;
+/* 	background-color: #5D5D5D; */
 	font-weight: bold;
 }
 
 .active{
 	color: #FFD9EC;
-	background-color: #5D5D5D;
+/* 	background-color: #5D5D5D; */
 	font-weight: bold;
 }
 </style>
@@ -67,7 +68,7 @@ nav > ul > li > a:hover{
 			<li>
 				<a href="#" 
 				onclick="goPage(${pagingMap.boardPaging.prevPage});">
-				<span>≪</span>
+				<span>이전</span>
 				</a>
 			</li>
 			
@@ -84,7 +85,7 @@ nav > ul > li > a:hover{
 
 			<li><a href="#" 
 				onclick="goPage(${pagingMap.boardPaging.nextPage});">
-				<span>≫</span></a>
+				<span>다음</span></a>
 			</li>
 		</ul>
 	</nav>

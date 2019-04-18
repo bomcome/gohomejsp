@@ -32,7 +32,7 @@
 </head>
 <body>
 	
-	<jsp:include page="../Header.jsp"/>
+	<jsp:include page="../header.jsp"/>
 	
 		<form id="inputForm" action="./updateCtr.do" method="post">
 			<input type="hidden" name='boardNo' value='${boardVo.boardNo}'>
